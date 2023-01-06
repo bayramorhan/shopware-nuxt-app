@@ -10,7 +10,8 @@ export default defineEventHandler(async(event) => {
             "associations":{
                 categories: {},
                 options: {},
-                media: {}
+                media: {},
+                properties: {}
             }
         };
         const runtimeConfig = useRuntimeConfig();
