@@ -18,7 +18,7 @@ export default defineNuxtConfig({
     runtimeConfig: {
     apiKey: process.env.API_KEY || 'SWSCVJNJEGFUWEJPM3IYDNF6WQ',
       public: {
-        apiBase: process.env.API_BASE || 'https://staging.schlafgut.com/store-api',
+        apiBase: process.env.API_BASE || 'http://shopware.ngsi.de',
       }
     }
   })
