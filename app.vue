@@ -11,6 +11,8 @@ navigationData.value = navigation.value;
 navigationMapping.value = navigation.value.map(item => { return { id: item.id, seoUrl: item?.seoUrls[0]?.seoPathInfo?.replace('/', '') || null } })
 navigationError.value = error;
 
+console.log(navigationData.value)
+
 </script>
 
 <template>

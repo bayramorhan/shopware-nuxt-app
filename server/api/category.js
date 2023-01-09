@@ -9,26 +9,11 @@ export default defineEventHandler(async(event) => {
         const runtimeConfig = useRuntimeConfig();
         let categoryData = null;
         let error = false;
-
-        const filter = {
-            associations: {
-                categories: {}
-            },
-            filter: [
-                {
-                    type: 'equals',
-                    field: 'active',
-                    value: true
-                }
-            ]
-        };
-
-        await axios.post(`${runtimeConfig.public.apiBase}/product-listing/${categoryId}`, filter, { headers: { 'sw-access-key': runtimeConfig.apiKey, 'sw-include-seo-urls': 1, 'sw-include-options': 1 } })
+        await axios.post(`${runtimeConfig.public.apiBase}/category/${categoryId}`, {}, { headers: { 'sw-access-key': runtimeConfig.apiKey, 'sw-include-seo-urls': 1, 'sw-include-options': 1 } })
         .then((response) => {
             categoryData = response.data
         })
         .catch((err) => {
-            console.log('errr', err)
             error = err.response.data
         })
 

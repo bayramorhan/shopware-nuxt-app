@@ -8,7 +8,9 @@ export default defineEventHandler(async(event) => {
     } else {
         const filter = {
             "associations":{
-                categories: {},
+                categories: {
+                    parent: {}
+                },
                 options: {},
                 media: {},
                 properties: {}
