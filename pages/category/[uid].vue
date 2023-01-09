@@ -12,7 +12,6 @@ categoryId = seoUrl ? seoUrl.id : uid;
 
 const { data: products, error } = await useAsyncData('products', () => $fetch('/api/product-listing', { body: { id: categoryId }, method: 'POST' }))
 
-console.log('products', products.value)
 </script>
 
 <template>

@@ -1,4 +1,6 @@
 <script setup>
+import { PlusIcon, MinusIcon } from '@heroicons/vue/24/solid'
+
 definePageMeta({
   layout: "main",
 });
@@ -8,7 +10,21 @@ const { data, error } = await useAsyncData("product", () =>
   $fetch("/api/product", { body: { id: productId }, method: "POST" })
 );
 
-console.log(data.value)
+const item = reactive({
+  id: data.value.product.id,
+  quantity: 1
+})
+
+const increaseQuantity = () => {
+  item.quantity++;
+}
+
+const decreaseQuantity = () => {
+  if (item.quantity > 1) {
+    item.quantity--
+  }
+}
+
 </script>
 
 <template>
@@ -44,6 +60,30 @@ console.log(data.value)
             <ProductDescription :data="data" />
 
             <Configurator v-if="data?.configurator?.length > 0" :data="data" />
+
+            <!-- Cart Actions -->
+            <div class="py-6 flex items-center space-x-4">
+              <div class="relative w-28">
+                <button type="button"
+                  class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-50 hover:bg-black rounded-full text-black hover:text-white"
+                  @click="decreaseQuantity">
+                  <MinusIcon class="w-5 p-1 border border-gray-600 rounded-full" />
+                </button>
+                <button type="button"
+                  class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-50 hover:bg-black rounded-full text-black hover:text-white"
+                  @click="increaseQuantity">
+                  <PlusIcon class="w-5 p-1 border border-gray-600 rounded-full" />
+                </button>
+                <input type="text" class="border border-gray-600 px-4 py-2  w-full text-center focus:outline-none"
+                  readonly v-model="item.quantity">
+              </div>
+
+              <div>
+                <button type="button" class="uppercase bg-black px-8 py-2 text-white hover:shadow-lg">
+                  add to cart
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

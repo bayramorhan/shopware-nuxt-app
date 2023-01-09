@@ -14,7 +14,7 @@ const props = defineProps({
         (a, b) => a.position - b.position
       )" :key="media.id">
         <div class="w-full h-[32rem] bg-cover bg-center" :style="{
-          backgroundImage: `url(${media.media.thumbnails[2].url})`,
+          backgroundImage: `url(${media.media.thumbnails.find(thumbnail => thumbnail.width === 800).url})`,
         }"></div>
       </swiper-slide>
     </swiper>
