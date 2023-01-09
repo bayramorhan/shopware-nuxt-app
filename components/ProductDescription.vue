@@ -16,7 +16,7 @@ const props = defineProps({
     <h1 class="text-xl font-bold mb-1">
       {{ data.product.translated.name }}
     </h1>
-    <div class="bg-amber-600 text-white inline-block px-4 py-1 font-medium mb-2.5">
+    <div class="bg-black text-white inline-block px-4 py-1 font-medium mb-2.5">
       {{
         data.product.calculatedPrice.totalPrice.toLocaleString("de-DE", {
           style: "currency",

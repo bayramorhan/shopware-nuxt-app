@@ -19,13 +19,20 @@ const { data: products, error } = await useAsyncData('products', () => $fetch('/
         <div>
             <section class="bg-white py-6 mb-8" v-if="products">
                 <div class="max-w-7xl mx-auto px-6 2xl:px-0 flex flex-col items-center justify-center">
-                    <h1 class="text-lg">{{ products.elements[0].categories[0].translated.name }} <span
-                            class="text-gray-400">Category</span>
+                    <h1 class="text-lg">{{
+                        products.elements[0].categories[products.elements[0].categories.length -
+                            1].translated.name
+                    }} <span class="text-gray-400">Category</span>
                     </h1>
                     <ul class="flex items-center space-x-2.5 text-sm text-gray-400">
-                        <li>Level#{{ products.elements[0].categories[0].level }}</li>
+                        <li>Level#{{
+                            products.elements[0].categories[products.elements[0].categories.length - 1].level
+                        }}</li>
                         <li>
-                            in {{ products.elements[0].categories[0].breadcrumb.join(' > ') }}
+                            in {{
+                                products.elements[0].categories[products.elements[0].categories.length -
+                                    1].breadcrumb.join(' > ')
+                            }}
                         </li>
                     </ul>
                 </div>
@@ -42,7 +49,7 @@ const { data: products, error } = await useAsyncData('products', () => $fetch('/
                                     @click="$router.push(`/product/${product.id}`)"
                                     :style="{ backgroundImage: `url(${product.cover.media.thumbnails[2].url})` }">
                                     <span
-                                        class="absolute bottom-2.5 right-2.5 bg-amber-600 text-gray-50 px-4 py-1 font-medium shadow-lg">{{
+                                        class="absolute bottom-2.5 right-2.5 bg-black text-gray-50 px-4 py-1 font-medium shadow-lg">{{
                                             product.calculatedPrice.totalPrice.toLocaleString('de-DE', {
                                                 style: 'currency',
                                                 currency: 'EUR', currencyDisplay: 'symbol'
@@ -51,7 +58,8 @@ const { data: products, error } = await useAsyncData('products', () => $fetch('/
                                 </div>
                                 <div class="p-4 min-h-[5rem] text-center">
                                     <p class="text-xs uppercase text-gray-400 tracking-widest">{{
-                                        products.elements[0].categories[0].translated.name
+                                        products.elements[0].categories[products.elements[0].categories.length -
+                                            1].translated.name
                                     }}</p>
                                     <nuxt-link :to="`/product/${product.id}`" class="block px-8">{{
                                         product.translated.name

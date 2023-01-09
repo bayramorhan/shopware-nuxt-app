@@ -10,6 +10,12 @@ const { data, error } = await useAsyncData("product", () =>
   $fetch("/api/product", { body: { id: productId }, method: "POST" })
 );
 
+const { data: crossSelling, error: crossSellingError } = await useAsyncData("crossSelling", () =>
+  $fetch("/api/cross-selling", { body: { id: productId }, method: "POST" })
+);
+
+console.log(crossSelling.value)
+
 const item = reactive({
   id: data.value.product.id,
   quantity: 1
@@ -86,6 +92,11 @@ const decreaseQuantity = () => {
             </div>
           </div>
         </div>
+      </div>
+      <!-- Cross Selling -->
+      <CrossSelling v-if="crossSelling && crossSelling[0]?.products?.length > 0" :cross-selling="crossSelling" />
+      <div class="mt-10">
+        <MainNavigation />
       </div>
     </div>
   </NuxtLayout>
