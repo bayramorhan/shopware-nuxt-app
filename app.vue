@@ -15,6 +15,8 @@ navigationError.value = error;
 </script>
 
 <template>
-  <NuxtLoadingBar :duration="1000" />
-  <NuxtPage />
+  <div>
+    <NuxtLoadingBar :duration="1000" />
+    <NuxtPage />
+  </div>
 </template>
